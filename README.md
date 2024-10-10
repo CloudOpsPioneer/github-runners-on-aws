@@ -82,3 +82,19 @@ sudo systemctl status github-runner
 ```
 journalctl -u github-runner
 ```
+
+### Removing runner
+If you want to remove the runner, 
+- stop the service by running
+  
+```
+sudo systemctl stop github-runner
+```
+- Navigate to the Runners in the repo and click on the below option to get the removal command.
+  
+![image](https://github.com/user-attachments/assets/ef5dfd15-c4b7-4fc0-b094-61866cf22fa7)
+
+- Go to the working directory on your Linux machine, and run the command.
+```
+./config.sh remove --token YOUR_TOKEN_HERE
+```
