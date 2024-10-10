@@ -83,7 +83,7 @@ sudo systemctl status github-runner
 journalctl -u github-runner
 ```
 
-### Removing runner
+#### Removing runner
 If you want to remove the runner, 
 - stop the service by running
   
