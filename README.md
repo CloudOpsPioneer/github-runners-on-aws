@@ -4,7 +4,7 @@ This repo is to explore the different ways of creating Github runners and docume
 
 ## Running locally on EC2 instance
 This method is pretty straight forward. Provision an EC2 instance of your choice. You can get all the commands from the Github console.
-- Navigate to `Github repo > Settings >'Actions' on left plane > runners > New self-hosted runner`
+- Navigate to `Github repo > Settings >'Actions' on left plane > Runners > New self-hosted runner`
 - Select the Runner image as `Linux`. Select Architecture as `x64` if you have provisioned the EC2 instance with Amazon Linux default ami. AMI name will also have this information if you have already provisioned EC2.
   
 ![image](https://github.com/user-attachments/assets/06d9698b-b93d-4425-8503-6ca21e7ab0a3)
@@ -44,3 +44,41 @@ Note: While running the config.sh commands, it will prompt for typing in few det
 - work folder - The work folder, often referred to as '_work' by default, is a directory within the runner's installation path that hosts all the job execution content. 
 
 
+
+##  Running as a service on EC2 instance
+With this method, you can run the github runner as a daemon process. This is almost similar to the previous one, except creating a service file and running as a service. 
+- Follow the steps for everything you have done in the previous step, except the execution of `./run.sh`.
+- Create a `github-runner.service` by running the below command.
+```
+sudo vi /etc/systemd/system/github-runner.service
+```
+- Paste the below content into the file. Please change the path of ExecStart, User, and Working Directory accordingly. The path is where you followed the previous steps, and user is your current Linux user where you are performing the operations.
+```
+[Unit]
+Description=GitHub Actions Runner
+After=network.target
+
+[Service]
+ExecStart=/home/ec2-user/actions-runner/run.sh
+User=ec2-user
+WorkingDirectory=/home/ec2-user/actions-runner
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+- Enable and start the service.
+```
+sudo systemctl enable github-runner
+sudo systemctl daemon-reload
+sudo systemctl start github-runner
+```
+- To confirm that the runner is working, you can check the status of the systemd service.
+```
+sudo systemctl status github-runner
+```
+- If the service is not running, check the logs by running the below command
+```
+journalctl -u github-runner
+```
