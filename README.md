@@ -113,6 +113,10 @@ sudo yum install docker -y
 sudo chmod 777 /var/run/docker.sock
 sudo systemctl restart docker
 ```
+- PAT (Personal Access Token) to authenticate to Github repos. It should have scope `repo` and `admin:org`
+  ![image](https://github.com/user-attachments/assets/501c6bb1-3581-4162-9e11-a656b42febbc)
+
+  
 - Create a directory and place a Dockerfile and entrypoint.sh file
 ```
 actions-runner-docker/
@@ -186,5 +190,5 @@ docker build . -t github-runner
 docker run -d --name <CONTAINER_NAME> -e PAT='<PERSONAL_ACCESS_TOKEN>' -e GITHUB_OWNER='<GITHUB_OWNER>' -e GITHUB_REPO='<GITHUB_REPO>' -e RUNNER_NAME='<RUNNER_NAME>' -e RUNNER_LABELS="<LABELS FOR RUNNER-COMMA SEPARATED>" <IMAGE_NAME>
 
 # Example: 
-docker run -d --name github-runner -e PAT='xy123' -e GITHUB_OWNER='karthikrajkkr' -e GITHUB_REPO='flaskapp-on-aws' -e RUNNER_NAME='flaskapp-runner' -e RUNNER_LABELS="dev,flask-app,cicd" github-runner
+docker run -d --name github-runner -e PAT='ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' -e GITHUB_OWNER='karthikrajkkr' -e GITHUB_REPO='flaskapp-on-aws' -e RUNNER_NAME='flaskapp-runner' -e RUNNER_LABELS="dev,flask-app,cicd" github-runner
 ```
