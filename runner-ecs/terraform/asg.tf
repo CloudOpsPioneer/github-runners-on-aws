@@ -3,7 +3,7 @@ resource "aws_appautoscaling_target" "ecs_target" {
   service_namespace  = "ecs"
   resource_id        = "service/${aws_ecs_cluster.gh_runner.name}/${aws_ecs_service.github_runner_svc.name}"
   scalable_dimension = "ecs:service:DesiredCount"
-  min_capacity       = 3
+  min_capacity       = 2
   max_capacity       = 5
 }
 
