@@ -208,3 +208,8 @@ Refer the folder [runner-ecs](https://github.com/karthikrajkkr/github-runners/tr
 ```sh
 aws ecs execute-command   --region us-east-1   --cluster <ECS_CLUSTER_NAME>   --task <ECS_TASK_ID>   --container <CONTAINER_NAME>   --command "/bin/bash"   --interactive
 ```
+Refer below if you face any issues about in executing the CLI.<br>
+https://docs.aws.amazon.com/systems-manager/latest/userguide/install-plugin-linux.html<br>
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html<br>
+https://repost.aws/knowledge-center/ecs-error-execute-command<br>
+https://github.com/aws-containers/amazon-ecs-exec-checker
