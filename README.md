@@ -7,6 +7,7 @@ This repo is to explore the different ways of creating Github runners and docume
 2. [Running as a service on EC2 instance](#Running-as-a-service-on-EC2-instance)
 3. [Running as a docker container on EC2 instance](#Running-as-a-docker-container-on-EC2-instance)
 4. [Running on ECS](Running-on-ECS)
+5. Running on EKS -> Coming soon
 
 ## Running locally on EC2 instance
 This method is pretty straight forward. Provision an EC2 instance of your choice. You can get all the commands from the Github console.
