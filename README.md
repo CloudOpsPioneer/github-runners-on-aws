@@ -6,6 +6,7 @@ This repo is to explore the different ways of creating Github runners and docume
 1. [Running locally on EC2 instance](#Running-locally-on-EC2-instance)
 2. [Running as a service on EC2 instance](#Running-as-a-service-on-EC2-instance)
 3. [Running as a docker container on EC2 instance](#Running-as-a-docker-container-on-EC2-instance)
+4. [Running on ECS](Running-on-ECS)
 
 ## Running locally on EC2 instance
 This method is pretty straight forward. Provision an EC2 instance of your choice. You can get all the commands from the Github console.
@@ -192,3 +193,6 @@ docker run -d --name <CONTAINER_NAME> -e PAT='<PERSONAL_ACCESS_TOKEN>' -e GITHUB
 # Example: 
 docker run -d --name github-runner -e PAT='ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' -e GITHUB_OWNER='karthikrajkkr' -e GITHUB_REPO='flaskapp-on-aws' -e RUNNER_NAME='flaskapp-runner' -e RUNNER_LABELS="dev,flask-app,cicd" github-runner
 ```
+
+##  Running on ECS
+Refer the folder [runner-ecs](https://github.com/karthikrajkkr/github-runners/tree/main/runner-ecs) for the implementation through terraform. You can set the desired count, min & max with autoscaling.
