@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "task" {
         }
       }
       linuxParameters = {
-        initProcessEnabled = true
+        initProcessEnabled = true      # option to enable ecs exec
       }
     }
   ])
