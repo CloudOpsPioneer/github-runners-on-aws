@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: github-runner
+  template:
+    metadata:
+      labels:
+        app: github-runner
+    spec:
+      containers:
+      - name: github-runner
+        image: "530694037299.dkr.ecr.us-east-1.amazonaws.com/github-runner-eks-image:latest"
+        env:
+          - name: PAT
+            valueFrom:
+              secretKeyRef:
+                name: gh-runner-secret
+                key: access_token
+          - name: GITHUB_OWNER
+            value: "karthikrajkkr"
+          - name: GITHUB_REPO
+            value: "flaskapp-on-aws"
+          - name: RUNNER_PREFIX
+            value: "flaskapp"
+          - name: RUNNER_LABELS
+            value: "dev,flask-app,eks,cicd"
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "1"
+            memory: "2Gi"
