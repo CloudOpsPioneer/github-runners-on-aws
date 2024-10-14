@@ -17,7 +17,7 @@ This folder walks through how you can deploy github self-hosted runners as pods 
 terraform apply -var pat_token=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   ```
 - The kubernetes objects created are Deployment that takes github details as env vars, HorizontalPodAutoscaler, IRSA (IAM Role as Service Account), and SecretProviderClass.
-- All the Kube objects are created as custom helm charts, and the values are passed to the [values.tpl](https://github.com/karthikrajkkr/github-runners/blob/main/runner-eks/github-runner-helm/values.tpl) template file while running terraform apply.
+- All the Kube objects are created as custom helm charts, and the values are passed to the [values.tpl](https://github.com/karthikrajkkr/github-runners-on-aws/blob/main/runner-eks/github-runner-helm/values.tpl) template file while running terraform apply.
 - In short, AWS infrastructure is created through Terraform, where Kube objects are deployed through a helm chart that is installed through the Terraform `helm_release` resource.
 
 
