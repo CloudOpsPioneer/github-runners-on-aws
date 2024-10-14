@@ -16,5 +16,5 @@ resource "null_resource" "apply_metrics_server" {
     command = "kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
   }
 
-  depends_on = [aws_eks_node_group.runner_node_1]
+  depends_on = [aws_eks_node_group.runner_node_1, null_resource.update_kubeconfig]
 }

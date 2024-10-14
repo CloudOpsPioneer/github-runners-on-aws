@@ -27,7 +27,7 @@ resource "helm_release" "csi_secrets_store" {
   }
 
 
-  depends_on = [aws_eks_node_group.runner_node_1]
+  depends_on = [aws_eks_node_group.runner_node_1, null_resource.update_kubeconfig]
 }
 
 
@@ -51,7 +51,7 @@ resource "helm_release" "secrets_provider_aws" {
   chart      = "secrets-store-csi-driver-provider-aws"
   version    = "0.3.9" # Specify the version you want, check for the latest version in the Helm chart repository
 
-  depends_on = [aws_eks_node_group.runner_node_1]
+  depends_on = [aws_eks_node_group.runner_node_1, null_resource.update_kubeconfig]
 }
 
 # Manual installation

@@ -19,7 +19,7 @@ resource "kubernetes_config_map_v1_data" "aws_auth" {
   }
 
   force      = true
-  depends_on = [aws_eks_node_group.runner_node_1]
+  depends_on = [aws_eks_node_group.runner_node_1, null_resource.update_kubeconfig]
 }
 
 

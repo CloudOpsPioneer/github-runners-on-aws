@@ -23,6 +23,5 @@ variable "my_private_ip" {
 
 }
 
-
 # pass while running tf apply ->  terraform apply -var pat_token=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 variable "pat_token" {}
