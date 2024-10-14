@@ -62,7 +62,7 @@ https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-configuration-provi
 # Install the Helm chart
 # helm upgrade --install secrets-provider-aws secrets-provider-aws/secrets-store-csi-driver-provider-aws     --namespace kube-system     --version 0.3.9
 ```
- - Check about the implementation of SecretProviderClass that is responsible for creating Kube Secret by reading the details from AWS Secret Manager.
+ - Check about the implementation of SecretProviderClass that is responsible for creating Kube Secret by reading the secrets from AWS Secret Manager.
 
 
 ### github-runner custom helm charts
