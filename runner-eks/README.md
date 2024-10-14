@@ -6,6 +6,7 @@
 3. [Secret Maintenance](#secret-maintenance)<br>
 4. [github-runner custom helm charts](#github-runner-custom-helm-charts)<br>
 5. [Kube Service Account](#Kube-Service-Account)<br>
+6. [Metrics server](#metrics-server)
 
 
 ### Overview
@@ -82,3 +83,8 @@ helm delete my-release
 ### Kube Service Account
 - A service account is required and passed to the pod in order to authenticate with AWS and mount the AWS secrets with the pod.
 - It is annotated with an IAM role that has access to the AWS secret manager. Read about IRSA here -> https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html.
+
+
+### Metrics server
+- Metrics server needs to be installed for the hpa (HorizontalPodAutoscaler) to work. Refer to the AWS documentation for installation steps: https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html.
+- I am using `null_resource` in the file [kube_others.tf](https://github.com/karthikrajkkr/github-runners-on-aws/blob/main/runner-eks/terraform/kube_others.tf)
