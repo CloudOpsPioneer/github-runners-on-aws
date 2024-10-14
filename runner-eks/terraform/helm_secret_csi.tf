@@ -3,7 +3,7 @@
 # https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-configuration-provider-with-kubernetes-secrets-store-csi-driver/
 
 
-#-------------------------------------------------<helm secrets-store-csi-driver-provider-aws>--------------------------------------------------
+#-------------------------------------------------<helm secrets-store-csi-driver>--------------------------------------------------
 resource "helm_release" "csi_secrets_store" {
   name       = "csi-secrets-store"
   namespace  = "kube-system"
