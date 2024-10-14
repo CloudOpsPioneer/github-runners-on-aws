@@ -1,5 +1,10 @@
 ## Running on EKS
 
+Table of contents
+[Overview](#Overview)
+
+
+### Overview
 This folder walks through how you can deploy github self-hosted runners as pods on EKS with autoscaling.
 
 - EKS infrastructure is deployed through terraform. You need to pass the PAT (Personal Access Token) token as a variable while running terraform apply.
