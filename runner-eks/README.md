@@ -81,4 +81,4 @@ helm delete my-release
 
 ### Kube Service Account
 - A service account is required and passed to the pod in order to authenticate with AWS and mount the AWS secrets with the pod.
-- It is annotated with an IAM role that has access to the AWS secret manager. Read about IRSA (here)[https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html].
+- It is annotated with an IAM role that has access to the AWS secret manager. Read about IRSA here -> https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html.
