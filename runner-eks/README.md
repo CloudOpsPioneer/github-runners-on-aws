@@ -60,7 +60,6 @@ helm create github-runner
 helm install my-release ./github-runner/
 helm delete my-release
 ```
-- I am not following any versioning of charts as of now.
-- Explore the  folder [github-runner-helm](https://github.com/karthikrajkkr/github-runners-on-aws/tree/main/runner-eks/github-runner-helm) for more details.
+- I am not following any versioning of charts as of now. Explore the  folder [github-runner-helm](https://github.com/karthikrajkkr/github-runners-on-aws/tree/main/runner-eks/github-runner-helm) for more details.
 - I tested the manual helm install by using [values.yaml](https://github.com/karthikrajkkr/github-runners-on-aws/blob/main/runner-eks/github-runner-helm/values.yaml) file in that folder by hard coding the values required for manifest files.
 - Later, I converted it into a template file and passed the values through Terraform Resource. Refer to [helm_github_runner.tf](https://github.com/karthikrajkkr/github-runners-on-aws/blob/main/runner-eks/terraform/helm_github_runner.tf) to see how I am passing to the template file.
