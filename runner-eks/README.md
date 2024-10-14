@@ -60,7 +60,7 @@ https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-configuration-provi
 ```
 
 ### github-runner custom helm charts
-- Initially, I have created all the Kube objects through Terraform resources. It is correct too, but I want to implement through helm, so I have converted it into helm charts.
+- Initially, I have created all the Kube objects through Terraform resources. It is correct too, but I want to implement through helm, so I have converted it into helm charts. You can notice most of the kube_*.tf files are commented.
 - Using the below commands, I created the charts, customized them, and installed them. In case of deployment, I deleted and recreated it.
 ```
 helm create github-runner
