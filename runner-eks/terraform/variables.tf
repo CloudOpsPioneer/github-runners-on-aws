@@ -24,5 +24,5 @@ variable "my_private_ip" {
 }
 
 
-# Use variable only if you are not using Secret CSI driver and Secrets Manager. Uncomment kube_secret.tf, and comment the kube_secretproviderclass.tf and modify the kube_deployment.tf to remove volumemounts, volume and initContainer
-#variable "pat_token" {}
+# pass while running tf apply ->  terraform apply -var pat_token=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+variable "pat_token" {}

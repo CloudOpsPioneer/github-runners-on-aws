@@ -1,0 +1,38 @@
+# This file is just for a reference for values.tpl file
+# -----------------------------------------------------
+
+deployment:
+  replicas: 1
+  container:
+    image: "<ECR IMAGE ARN>"
+  env:
+    GITHUB_OWNER: "karthikrajkkr"
+    GITHUB_REPO: "flaskapp-on-aws"
+    RUNNER_LABELS: "dev,flask-app,eks,cicd"
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "512Mi"
+    limits:
+      cpu: "1"
+      memory: "1Gi"
+
+
+serviceAccount:
+  name: github-runner-irsa
+  roleArn: "<IRSA_IAM_ROLE>"
+
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 10
+  targetCpuUtilizationPercentage: 75  # CPU usage percentage to target
+
+
+secretProviderClass:
+  provider: aws
+  region: us-east-1
+  awsSecretName: "github-runner-creds"
+  awsSecretKey: "PAT"
+  kubeSecretName: gh-runner-secret
+  kubeSecretKey: access_token

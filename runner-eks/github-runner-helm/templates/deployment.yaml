@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      initContainers:
+        - name: wait-for-secret
+          image: busybox
+          command:
+            - "sh"
+            - "-c"
+            - "until [ -f /mnt/secrets/github-runner-creds ]; do echo waiting for secret; sleep 2; done"
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets"
+              readOnly: true
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.deployment.container.image }}
+          env:
+          - name: PAT
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Values.secretProviderClass.kubeSecretName }}"
+                key: "{{ .Values.secretProviderClass.kubeSecretKey }}"
+          - name: GITHUB_OWNER
+            value: "{{ .Values.deployment.env.GITHUB_OWNER }}"
+          - name: GITHUB_REPO
+            value: "{{ .Values.deployment.env.GITHUB_REPO }}"
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: "metadata.name"
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: "spec.nodeName"
+          - name: RUNNER_LABELS
+            value: "{{ .Values.deployment.env.RUNNER_LABELS }}"
+          resources:
+            requests:
+              cpu: {{ .Values.deployment.resources.requests.cpu }}
+              memory: {{ .Values.deployment.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.deployment.resources.limits.cpu }}
+              memory: {{ .Values.deployment.resources.limits.memory }}
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: "secrets-store.csi.k8s.io"
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: {{ .Chart.Name }}-spc

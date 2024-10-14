@@ -16,7 +16,7 @@ if [ -z "$REGISTRATION_TOKEN" ]; then
 fi
 
 # Dynamically generate the RUNNER_NAME
-RUNNER_NAME="$POD_NAME-on-$NODE_NAME"
+RUNNER_NAME="$POD_NAME-$NODE_NAME"
 
 echo "Runner Name: $RUNNER_NAME"
 

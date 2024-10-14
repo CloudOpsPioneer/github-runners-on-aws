@@ -74,7 +74,7 @@ resource "aws_iam_role" "eks_runner_iam_role" {
 }
 
 #------------------------------------------------<KUBE SERVICE ACCOUNT>------------------------------------------------#
-
+/*
 resource "kubernetes_service_account_v1" "irsa" {
   metadata {
     name = "github-runner-irsa"
@@ -85,6 +85,7 @@ resource "kubernetes_service_account_v1" "irsa" {
 
   depends_on = [aws_eks_node_group.runner_node_1]
 }
+*/
 
 /*
 #Yaml format of ServiceAccount

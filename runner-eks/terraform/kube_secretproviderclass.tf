@@ -5,14 +5,14 @@ resource "kubernetes_manifest" "github_runner_creds" {
     kind       = "SecretProviderClass"
     metadata = {
       name      = "github-runner-creds"
-      namespace = kubernetes_deployment_v1.github_runner.metadata[0].namespace
+      namespace = "default" #kubernetes_deployment_v1.github_runner.metadata[0].namespace
     }
     spec = {
       provider = "aws"
       parameters = {
         region  = "us-east-1"
         objects = <<-EOT
-          - objectName: aws_secretsmanager_secret.github_runner_secret.name
+          - objectName: "${aws_secretsmanager_secret.github_runner_secret.name}"
             objectType: "secretsmanager"
             jmesPath:
               - path: "PAT"
@@ -35,6 +35,7 @@ resource "kubernetes_manifest" "github_runner_creds" {
   }
   depends_on = [helm_release.secrets_provider_aws]
 }
+*/
 /*
 
 #Yaml format of SecretProviderClass

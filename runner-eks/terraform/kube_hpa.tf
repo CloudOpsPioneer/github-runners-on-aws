@@ -1,3 +1,4 @@
+/*
 resource "kubernetes_horizontal_pod_autoscaler" "github_runner_hpa" {
   metadata {
     name = "github-runner-hpa"
@@ -17,7 +18,7 @@ resource "kubernetes_horizontal_pod_autoscaler" "github_runner_hpa" {
   }
 
 }
-
+*/
 
 /*
 #YAML format of HPA for better understanding

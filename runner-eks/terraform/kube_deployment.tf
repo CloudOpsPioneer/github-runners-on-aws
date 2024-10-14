@@ -1,4 +1,4 @@
-resource "kubernetes_deployment_v1" "github_runner" {
+/*resource "kubernetes_deployment_v1" "github_runner" {
   metadata {
     name = "github-runner"
   }
@@ -107,10 +107,10 @@ resource "kubernetes_deployment_v1" "github_runner" {
       }
     }
   }
-  depends_on = [aws_eks_node_group.runner_node_1, helm_release.secrets_provider_aws]
+  depends_on = [aws_eks_node_group.runner_node_1, helm_release.secrets_provider_aws, kubernetes_manifest.github_runner_creds]
 }
 
-
+*/
 
 /*
 #YAML format of Deployment for better understanding
