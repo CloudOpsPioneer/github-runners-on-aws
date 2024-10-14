@@ -36,8 +36,9 @@ resource "helm_release" "csi_secrets_store" {
 # Add the Helm repository for the CSI Secrets Store
 # helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
 
-# Update your repositories
-# helm repo update
+# If you want to list the repos and list all the versions of a repo
+# helm repo list
+# helm search repo secrets-store-csi-driver --versions
 
 # Install the Helm chart
 # helm upgrade --install csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver     --namespace kube-system     --version 1.4.6     --set syncSecret.enabled=true     --set enableSecretRotation=true     --set rotationPollInterval=2h
@@ -58,8 +59,9 @@ resource "helm_release" "secrets_provider_aws" {
 # Add the Helm repository for the AWS secrets provider
 # helm repo add secrets-provider-aws https://aws.github.io/secrets-store-csi-driver-provider-aws
 
-# Update your repositories
-# helm repo update
+# If you want to list the repos and list all the versions of a repo
+# helm repo list
+# helm search repo secrets-provider-aws --versions
 
 # Install the Helm chart
 # helm upgrade --install secrets-provider-aws secrets-provider-aws/secrets-store-csi-driver-provider-aws     --namespace kube-system     --version 0.3.9
