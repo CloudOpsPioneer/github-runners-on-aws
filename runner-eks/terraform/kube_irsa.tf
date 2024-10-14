@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "eks_secret_inline" {
     ]
 
     resources = [
-      "*",
+      aws_secretsmanager_secret.github_runner_secret.arn
     ]
   }
 }
