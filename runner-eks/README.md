@@ -1,10 +1,10 @@
 ## Running on EKS
 
 ### Table of contents
-1.[Overview](#Overview)<br>
-2.[Naming convention of Runner](#Naming-convention-of-Runner)<br>
-3.[Secret Maintenance](#secret-maintenance)<br>
-4.[github-runner custom helm charts](#github-runner-custom-helm-charts)
+1. [Overview](#Overview)<br>
+2. [Naming convention of Runner](#Naming-convention-of-Runner)<br>
+3. [Secret Maintenance](#secret-maintenance)<br>
+4. [github-runner custom helm charts](#github-runner-custom-helm-charts)
 
 ### Overview
 This folder walks through how you can deploy github self-hosted runners as pods on EKS with autoscaling.
