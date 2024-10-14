@@ -1,3 +1,6 @@
+#-------------------------------------------------<<<<<IGNORE THIS FILE>>>>>-------------------------------------------------
+# Commented this since I converted the Manifest to helm chart. Refer https://github.com/karthikrajkkr/github-runners/tree/main/runner-eks/github-runner-helm
+
 /*
 resource "kubernetes_horizontal_pod_autoscaler" "github_runner_hpa" {
   metadata {
