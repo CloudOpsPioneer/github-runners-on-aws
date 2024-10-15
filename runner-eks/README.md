@@ -64,6 +64,8 @@ https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-configuration-provi
 # helm upgrade --install secrets-provider-aws secrets-provider-aws/secrets-store-csi-driver-provider-aws     --namespace kube-system     --version 0.3.9
 ```
  - Check about the implementation of [SecretProviderClass](https://secrets-store-csi-driver.sigs.k8s.io/getting-started/usage) that is responsible for creating Kube Secret by reading the secrets from AWS Secret Manager.
+ - The secret store CSI driver is mainly meant for using secrets as volume. In this github runner implementation, we are using PAT token by passing as env vars to the pod. Kube secret is not being created if we don't mount as volume, even though we are not using the secrets from mounts. Also, you mention the SecretProviderClass name only in the volumes.
+ - Check this medium.com blog to understand more. [medium.com/integrating-secrets-manager-with-aws](https://waswani.medium.com/integrating-secrets-manager-with-aws-eks-79c93e70c74e)
 
 
 ### github-runner custom helm charts
