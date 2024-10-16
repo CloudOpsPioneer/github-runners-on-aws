@@ -63,7 +63,7 @@ resource "helm_release" "arc_runner_set" {
 
 
   values = [
-    file("${path.module}/scaleSetValues.yaml")
+    file("${path.module}/helm_values/scaleSetValues.yaml")
   ]
 
 
