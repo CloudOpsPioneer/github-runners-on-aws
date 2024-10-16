@@ -11,12 +11,6 @@ resource "helm_release" "arc" {
 
   create_namespace = true
 
-
-
-  # Using custom values file (values.yaml)
-  # values = [
-  #   file("${path.module}/values.yaml")
-  # ]
 }
 
 output "helm_arc_status" {
@@ -37,7 +31,7 @@ resource "helm_release" "arc_runner_set" {
 
   set {
     name  = "minRunners"
-    value = 0
+    value = 1
   }
 
   set {
@@ -48,7 +42,7 @@ resource "helm_release" "arc_runner_set" {
 
   set {
     name  = "githubConfigUrl"
-    value = "https://github.com/CloudOpsPioneer/terraform-cloud-demo"
+    value = "https://github.com/CloudOpsPioneer"
   }
 
   set_sensitive {
@@ -57,15 +51,21 @@ resource "helm_release" "arc_runner_set" {
   }
 
   set {
+    name  = "runnerScaleSetName"
+    value = "cloudops-github-runner"
+  }
+
+
+  set {
     name  = "template.spec.containers[0].image"
-    value = aws_ecr_repository.github_runner_ecr.repository_url 
+    value = aws_ecr_repository.github_runner_ecr.repository_url
   }
 
 
   values = [
-     file("${path.module}/scaleSetValues.yaml")
-   ]
-  
+    file("${path.module}/scaleSetValues.yaml")
+  ]
+
 
 }
 
