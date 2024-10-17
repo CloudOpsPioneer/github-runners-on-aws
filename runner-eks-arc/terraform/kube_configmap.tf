@@ -25,7 +25,7 @@ resource "kubernetes_config_map_v1_data" "aws_auth" {
 
 /*
 #YAML format of aws-auth ConfigMap for better understanding
-#---------------------------------------------------
+#----------------------------------------------------------
 apiVersion: v1
 data:
   mapRoles: |
