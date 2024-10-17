@@ -1,4 +1,3 @@
-
 variable "vpc_id" {
   type = string
   default     = "vpc-05b4f2e13b7df5467"
@@ -14,3 +13,6 @@ variable "region" {
   type    = string
   default = "us-east-1"
 }
+
+# pass while running tf apply ->  terraform apply -var pat_token=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+variable "pat_token" {}

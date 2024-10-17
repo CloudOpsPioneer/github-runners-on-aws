@@ -14,8 +14,8 @@ resource "aws_ecs_task_definition" "task" {
       image     = "${aws_ecr_repository.gh_runner.repository_url}:latest"
       essential = true
       environment = [
-        { name = "GITHUB_OWNER", value = "karthikrajkkr" },
-        { name = "GITHUB_REPO", value = "flaskapp-on-aws" },
+        { name = "GITHUB_OWNER", value = "CloudOpsPioneer" },
+        { name = "GITHUB_REPO", value = "terraform-cloud-demo" },
         { name = "RUNNER_PREFIX", value = "flaskapp" },
         { name = "RUNNER_LABELS", value = "dev,flask-app,cicd" }
       ]
@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "task" {
         }
       }
       linuxParameters = {
-        initProcessEnabled = true      # option to enable ecs exec
+        initProcessEnabled = true # option to enable ecs exec
       }
     }
   ])

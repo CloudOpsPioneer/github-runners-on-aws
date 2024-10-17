@@ -5,4 +5,5 @@ resource "aws_ecr_repository" "gh_runner" {
   image_scanning_configuration {
     scan_on_push = true
   }
+  force_delete = true
 }

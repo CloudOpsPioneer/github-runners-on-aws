@@ -21,7 +21,7 @@ resource "aws_ecs_service" "github_runner_svc" {
     # Doesn't matter if you are using PRIVATE SUBNET
 
   }
-  
+
   # option to enable ecs exec
   enable_execute_command = true
 }
