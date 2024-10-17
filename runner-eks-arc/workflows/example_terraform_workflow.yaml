@@ -1,0 +1,52 @@
+# https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+
+name: terraform
+
+on: 
+  push:
+  workflow_dispatch:
+    inputs:
+      apply_confirmation:
+        description: 'Confirm to run terraform apply'
+        required: true
+        type: choice
+        options:
+          - "yes"
+          - "no"
+        default: "no"
+
+# Permission can be added at job level or workflow level    
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+      
+jobs:
+  terraform_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.9.7"
+
+    - name: Configure AWS via Role Assumption
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::xxxxxxxxxxxx:role/github-action-aws-workflow-iam-role
+        aws-region: 'us-east-1'
+        
+    - run: aws sts get-caller-identity && aws s3 ls | wc -l
+
+    - run: terraform init
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan
+
+    - name: Terraform Apply
+      if: ${{ github.event.inputs.apply_confirmation == 'yes' }}
+      run: terraform apply -auto-approve
+      if: github.ref == 'refs/heads/main'
