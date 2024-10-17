@@ -1,3 +1,5 @@
+# Follow this documentation for manual setup https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+
 #------------------------------------------------<OIDC PROVIDER>------------------------------------------------#
 locals {
   oidc_issuer_url = "https://token.actions.githubusercontent.com"
@@ -7,13 +9,13 @@ locals {
 data "external" "thumbprint" {
   program = ["bash", "-c", "echo | openssl s_client -connect oidc.eks.us-east-1.amazonaws.com:443 2>&- | openssl x509 -fingerprint -noout | sed 's/://g' | awk -F= '{print tolower($2)}' | jq -R '{thumbprint: .}'"]
 }
-/*
+
 resource "aws_iam_openid_connect_provider" "oidc_provider" {
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = [data.external.thumbprint.result["thumbprint"]]
   url             = local.oidc_issuer_url
 }
-*/
+
 #------------------------------------------------<TRUST POLICY>------------------------------------------------#
 data "aws_iam_policy_document" "github_action_trust_policy" {
 
@@ -73,4 +75,3 @@ resource "aws_iam_role" "github_action_aws_workflow_role" {
   }
 
 }
-
