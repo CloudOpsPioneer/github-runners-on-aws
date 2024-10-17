@@ -19,7 +19,7 @@ variable "my_public_ip" {
 
 variable "my_private_ip" {
   default     = "10.xx.xx.xx/32"
-  description = "private ip of ec2 instance where i terraform and kubectl commands"
+  description = "private ip of ec2 instance where i run terraform and kubectl commands"
 
 }
 
