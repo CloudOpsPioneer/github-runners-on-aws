@@ -6,8 +6,8 @@ resource "helm_release" "github_runner" {
   values = [templatefile("${path.module}/../github-runner-helm/values.tpl", {
     deployment_replicas               = 1
     container_image                   = aws_ecr_repository.runner_ecr.repository_url
-    github_owner                      = "karthikrajkkr"
-    github_repo                       = "flaskapp-on-aws"
+    github_owner                      = "CloudOpsPioneer"
+    github_repo                       = "terraform-aws-flaskapp"
     runner_labels                     = "dev,flask-app,eks,cicd"
     requests_cpu                      = "500m"
     requests_memory                   = "512Mi"

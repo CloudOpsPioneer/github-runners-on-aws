@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "eks_runner_sa_assume" {
       variable = "${replace(local.oidc_issuer_url, "https://", "")}:sub"
 
       values = [
-        "system:serviceaccount:default:github-runner-irsa"
+        "system:serviceaccount:default:github-runner-irsa" # This serviceaccount name should be same as what you mention in helm_github_runner.tf file in service_account_name
       ]
     }
 

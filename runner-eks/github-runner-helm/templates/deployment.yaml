@@ -12,7 +12,7 @@ spec:
       labels:
         app: {{ .Chart.Name }}
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name }}-irsa
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       initContainers:
         - name: wait-for-secret
           image: busybox

@@ -6,7 +6,7 @@ deployment:
   container:
     image: "<ECR IMAGE ARN>"
   env:
-    GITHUB_OWNER: "karthikrajkkr"
+    GITHUB_OWNER: "CloudOpsPioneer"
     GITHUB_REPO: "flaskapp-on-aws"
     RUNNER_LABELS: "dev,flask-app,eks,cicd"
   resources:
