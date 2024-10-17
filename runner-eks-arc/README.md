@@ -48,4 +48,6 @@ githubConfigSecret:
      value = var.pat_token
     }
 ```
+- You need to pass the PAT (Personal Access Token) token as a variable while running terraform apply.<br>
+  `terraform apply -var pat_token=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
 
