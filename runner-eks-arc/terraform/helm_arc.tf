@@ -19,7 +19,6 @@ output "helm_arc_status" {
 
 
 
-
 resource "helm_release" "arc_runner_set" {
   name       = "arc-runner-set"
   chart      = "gha-runner-scale-set"
@@ -27,7 +26,7 @@ resource "helm_release" "arc_runner_set" {
   repository = "oci://ghcr.io/actions/actions-runner-controller-charts"
   version    = local.arc_chart_version
 
-  create_namespace = true
+  create_namespace = false
 
   set {
     name  = "minRunners"
@@ -45,9 +44,14 @@ resource "helm_release" "arc_runner_set" {
     value = "https://github.com/CloudOpsPioneer"
   }
 
-  set_sensitive {
-    name  = "githubConfigSecret.github_token"
-    value = var.pat_token
+  #  set_sensitive {
+  #    name  = "githubConfigSecret.github_token"
+  #    value = var.pat_token
+  #  }
+
+  set {
+    name  = "githubConfigSecret"
+    value = kubernetes_secret_v1.github_runner_secret.metadata.0.name
   }
 
   set {
